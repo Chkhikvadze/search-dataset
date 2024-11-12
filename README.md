@@ -1,42 +1,56 @@
----
-annotations_creators:
-- expert-generated
-language:
-- en
-language_creators:
-- expert-generated
-license:
-- mit
-multilinguality:
-- monolingual
-pretty_name: AI Search Providers Benchmark Dataset
-size_categories:
-- 100<n<1K
-source_datasets:
-- original
-task_categories:
-- question-answering
-task_ids:
-- open-domain-qa
-tags:
-- search
-- factual-accuracy
-- news
-- knowledge
----
+This project helps upload a search dataset to Hugging Face's dataset repository. The uploaded dataset can be found at [junzhang1207/search-dataset](https://huggingface.co/datasets/junzhang1207/search-dataset).
 
-# AI Search Providers Benchmark Dataset
+## Setup
 
-## 📊 Dataset Structure
+### 1. Environment Setup
 
-Each entry contains:
-- `id`: Unique identifier for the QA pair
-- `question`: The query text
-- `expected_answer`: The correct answer
+Create and activate a virtual environment:
+
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# On Windows:
+venv\Scripts\activate
+# On Unix/MacOS:
+source venv/bin/activate
+```
+
+Install required packages:
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Hugging Face Access Token
+
+1. Create an account on [Hugging Face](https://huggingface.co/)
+2. Go to your [Settings > Access Tokens](https://huggingface.co/settings/tokens)
+3. Create a new token with write permissions
+4. Save your token in a `.env` file:
+
+```bash
+# .env
+HUGGINGFACE_TOKEN=your_token_here
+```
+
+### 3. Running the Upload Script
+
+Execute the upload script:
+```bash
+python upload_dataset.py
+```
+
+## Dataset Structure
+
+The dataset contains question-answer pairs organized with the following fields:
+- `id`: Unique identifier
+- `question`: Query text
+- `expected_answer`: Correct answer
 - `category`: Topic category
-- `area`: Broader area classification (News/Knowledge)
+- `area`: Broader classification (News/Knowledge)
 
-## 🎯 Categories
+## Categories
 
 The dataset covers various domains including:
 - Entertainment
@@ -50,39 +64,3 @@ The dataset covers various domains including:
 - Auto (Automotive)
 - E-sports
 - Fashion
-- False Premise
-
-## 📈 Dataset Characteristics
-
-The dataset is categorized into four major types:
-
-1. **Simple**: Basic questions requiring minimal analysis
-2. **Complex**: Questions needing synthesis across multiple sources
-3. **Hallucination Inducing**: Questions with false premises to test AI's factual accuracy
-4. **News**: Questions with answers that change due to recent developments
-
-## 🔍 Use Cases
-
-This dataset is particularly useful for:
-- Evaluating search engine accuracy and relevance
-- Testing false premise detection capabilities
-- Assessing topic classification accuracy
-- Benchmarking question-answering systems
-- Measuring response quality and factual accuracy
-- Testing handling of time-sensitive information
-
-## 🛠️ Methodology
-
-The dataset was created by:
-1. Scraping various trustworthy sources for interesting facts and lessons
-2. Creating sets of Q&A to represent those facts
-3. Adjusting the tone, style, and distribution of queries to match production users
-
-## 📊 Dataset Statistics
-
-The dataset includes a diverse range of questions and answers, with special attention to:
-- Current events and news
-- Technical and scientific topics
-- Entertainment and sports
-- Historical facts
-- Common misconceptions and false premises
